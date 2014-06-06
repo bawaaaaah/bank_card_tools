@@ -25,7 +25,11 @@ def genCardNumber(start="", length=16):
     start = str(start)
     for n in range(len(start), length-1):
         start += str(SystemRandom().randint(0, 9))
-    start += str(10 - (luhn(start+"0") % 10))
+    tmp = (luhn(start+"0") % 10)
+    if tmp == 0:
+        start += "0"
+    else:
+        start += str(10 - tmp)
     return start
 
 
